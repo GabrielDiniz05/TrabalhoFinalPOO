@@ -11,19 +11,19 @@ Trabalho final da matéria de programação orientada a objetos da PUC-MG. O int
 ### A fazer:
 - Criar classe Consumidor.
     <br>Abdon
-- Criar classe abstrata ou Interface Contas.
+<br>- Criar classe abstrata ou Interface Contas.
     <br>Gabriel
-- Criar classe Conta de água, herda de Contas.
+<br>- Criar classe Conta de água, herda de Contas.
     <br>Guilherme
-- Criar classe Conta de luz, herda de Contas.
+<br>- Criar classe Conta de luz, herda de Contas.
     <br>Abdon
-- Instalar Entity Framework (PostgreSQL)
+<br>- Instalar Entity Framework (PostgreSQL)
     <br>Gabriel
-- Criar métodos e atributos da classe Conta de água de acordo com enunciado.
+<br>- Criar métodos e atributos da classe Conta de água de acordo com enunciado.
     <br>Guilherme
-- Criar métodos e atributos da classe Conta de luz de acordo com enunciado.
+<br>- Criar métodos e atributos da classe Conta de luz de acordo com enunciado.
     <br>Abdon
-- Montar sistema de relatório
+<br>- Montar sistema de relatório
     <br>Gabriel
-- Montar interface gráfica
+<br>- Montar interface gráfica
     <br>Guilherme
