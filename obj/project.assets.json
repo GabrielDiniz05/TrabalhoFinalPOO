@@ -8,23 +8,23 @@
     "net7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\gabri\\.nuget\\packages\\": {},
+    "C:\\Users\\gle11\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\gabri\\OneDrive\\Área de Trabalho\\SistemasDaInformacao_Periodo-03\\POO\\TrabalhoFinalPOO\\TrabalhoFinalPOO\\TrabalhoFinalPOO.csproj",
+      "projectUniqueName": "C:\\Users\\gle11\\Desktop\\Trabalho POO\\TrabalhoFinalPOO\\TrabalhoFinalPOO.csproj",
       "projectName": "TrabalhoFinalPOO",
-      "projectPath": "C:\\Users\\gabri\\OneDrive\\Área de Trabalho\\SistemasDaInformacao_Periodo-03\\POO\\TrabalhoFinalPOO\\TrabalhoFinalPOO\\TrabalhoFinalPOO.csproj",
-      "packagesPath": "C:\\Users\\gabri\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\gabri\\OneDrive\\Área de Trabalho\\SistemasDaInformacao_Periodo-03\\POO\\TrabalhoFinalPOO\\TrabalhoFinalPOO\\obj\\",
+      "projectPath": "C:\\Users\\gle11\\Desktop\\Trabalho POO\\TrabalhoFinalPOO\\TrabalhoFinalPOO.csproj",
+      "packagesPath": "C:\\Users\\gle11\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\gle11\\Desktop\\Trabalho POO\\TrabalhoFinalPOO\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\gabri\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\gle11\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -33,6 +33,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -66,7 +67,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }
