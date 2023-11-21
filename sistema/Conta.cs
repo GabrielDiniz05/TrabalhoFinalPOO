@@ -10,5 +10,6 @@ namespace TrabalhoFinalPOO.sistema
         void LerMesAtual();
         void LerMesAnterior();
         double Consumo();
+        double ValorTotal();
     }
 }
