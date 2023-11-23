@@ -6,7 +6,7 @@ namespace TrabalhoFinalPOO.sistema{
         protected string tipoImovel;
         protected double leituraMesAnterior = 0;
         protected double leituraMesAtual = 0;
-        protected double consumo = leituraMesAtual - leituraMesAnterior;
+        protected double consumo;
         protected double valorSemImposto = 0;
 
         public String getTipoImovel(){
