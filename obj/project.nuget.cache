@@ -1,6 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "bV+ftWlrKfjIlX7HM0MtlFBOPYVHRYRcb1o6gd/Qb3+V3kc4B87ue/ZYKgPNjNxSAdgv+noFpfqT8iY8NNIoDg==",
+<<<<<<< HEAD
+  "dgSpecHash": "1dbhI3pXvTXQHl68j8jcwHL5gN/SHExuYx5UA/EJnHXqejccXrtLc1DcK6gochgFNLXz8hOHYY6v3JLLJ6Xpsw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\gle11\\Desktop\\Trabalho POO\\TrabalhoFinalPOO\\TrabalhoFinalPOO.csproj",
+  "expectedPackageFiles": [
+=======
+  "dgSpecHash": "R9WvarEPhpliypuPPQydWoWskqXSHrC8m7oJ8itf47LIcCtRxhHmUZd0rbGP6j4uoq04SnSGu69SkaT15ji/Hg==",
   "success": true,
   "projectFilePath": "C:\\Users\\gle11\\Desktop\\Trabalho POO\\TrabalhoFinalPOO\\TrabalhoFinalPOO.csproj",
   "expectedPackageFiles": [
@@ -18,14 +24,12 @@
     "C:\\Users\\gle11\\.nuget\\packages\\microsoft.extensions.options\\7.0.0\\microsoft.extensions.options.7.0.0.nupkg.sha512",
     "C:\\Users\\gle11\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
     "C:\\Users\\gle11\\.nuget\\packages\\npgsql\\7.0.6\\npgsql.7.0.6.nupkg.sha512",
-    "C:\\Users\\gle11\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\7.0.11\\npgsql.entityframeworkcore.postgresql.7.0.11.nupkg.sha512"
+    "C:\\Users\\gle11\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\7.0.11\\npgsql.entityframeworkcore.postgresql.7.0.11.nupkg.sha512",
+>>>>>>> Contas
+    "C:\\Users\\gle11\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.14\\microsoft.netcore.app.ref.7.0.14.nupkg.sha512",
+    "C:\\Users\\gle11\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.14\\microsoft.windowsdesktop.app.ref.7.0.14.nupkg.sha512",
+    "C:\\Users\\gle11\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.14\\microsoft.aspnetcore.app.ref.7.0.14.nupkg.sha512",
+    "C:\\Users\\gle11\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.14\\microsoft.netcore.app.host.win-x64.7.0.14.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\gle11\\Desktop\\Trabalho POO\\TrabalhoFinalPOO\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

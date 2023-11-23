@@ -3,7 +3,7 @@ using System;
 namespace TrabalhoFinalPOO.sistema{
     public abstract class Conta{
 
-        protected String tipoImovel;
+        protected string tipoImovel;
         protected double leituraMesAnterior = 0;
         protected double leituraMesAtual = 0;
         protected double consumo = leituraMesAtual - leituraMesAnterior;
@@ -49,6 +49,8 @@ namespace TrabalhoFinalPOO.sistema{
             this.valorSemImposto = valorSemImposto;
         }
 
-        public virtual double ValorTotalComImposto();
+        public virtual double ValorTotalComImposto(){
+            return 2.3;
+        }
     }
 }
