@@ -17,6 +17,7 @@ namespace TrabalhoFinalPOO.sistema
             this.tipoImovel = tipoImovel;
             this.leituraMesAnterior = leituraMesAnterior;
             this.leituraMesAtual = leituraMesAtual;
+            consumo = this.leituraMesAtual - this.leituraMesAnterior;
         }
 
         public override double ValorTotalComImposto()
