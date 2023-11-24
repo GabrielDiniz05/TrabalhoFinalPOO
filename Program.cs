@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using TrabalhoFinalPOO.sistema;
-
 
 public class Program
 {
+    static List<Consumidor> consumidores = new List<Consumidor>();
 
     public static void Main(String[] args)
     {
@@ -15,46 +16,123 @@ public class Program
             Console.WriteLine("CADASTRAR-SE: 1");
             Console.WriteLine("LOGAR: 2");
             Console.WriteLine("SAIR DO SISTEMA: 3");
-            string Opcao = Console.ReadLine();
-            if(Opcao == "3"){
-                isRunning = false;
-            }
-            MenuInicial(Opcao);
-            
-        }
+            string opcao = Console.ReadLine();
 
-
-
-        static void MenuInicial(string Opcao)
-        {
-            Consumidor c1;
-            string senha;
-            string nome;
-            switch (Opcao)
+            switch (opcao)
             {
                 case "1":
-                    Console.WriteLine("Digite seu nome: ");
-                    nome = Console.ReadLine();
-                    Console.WriteLine("Digite sua senha: ");
-                    senha = Console.ReadLine();
-                    c1 = new Consumidor(nome, senha);
-                    c1.enviarParaBanco();
+                    RegistrarConsumidor();
                     break;
                 case "2":
-                    Console.WriteLine("Digite seu nome: ");
-                    nome = Console.ReadLine();
-                    Console.WriteLine("Digite sua senha: ");
-                    senha = Console.ReadLine();
-                    c1 = new Consumidor(nome, senha);
+                    //Logar();
+                    break;
+                case "3":
+                    isRunning = false;
+                    break;
+                default:
+                    Console.WriteLine("Opção inválida. Tente novamente.");
                     break;
             }
         }
+    }
+
+    static void RegistrarConsumidor()
+    {
+        Console.WriteLine("Digite seu nome: ");
+        string nome = Console.ReadLine();
+        Console.WriteLine("Digite sua senha: ");
+        string senha = Console.ReadLine();
+
+        Consumidor novoConsumidor = new Consumidor(nome, senha);
+        consumidores.Add(novoConsumidor);
+        novoConsumidor.enviarParaBanco();
+
+        Console.WriteLine("Cadastro realizado com sucesso!");
+        MenuContas(novoConsumidor);
+    }
 
 
-        static void MenuContas()
+    /*
+    static void Logar()
+    {
+        Console.WriteLine("Digite seu nome: ");
+        string nome = Console.ReadLine();
+        Console.WriteLine("Digite sua senha: ");
+        string senha = Console.ReadLine();
+
+        Consumidor consumidorLogado = consumidores.Find(c => c.getNome() == nome && c.getSenha() == senha);
+
+        if (consumidorLogado != null)
         {
-            
+            Console.WriteLine("Login bem-sucedido!");
+            MenuContas(consumidorLogado);
+        }
+        else
+        {
+            Console.WriteLine("Nome de usuário ou senha incorretos. Tente novamente.");
         }
     }
-}
+    */
+    static void MenuContas(Consumidor consumidor)
+    {
+        Console.WriteLine($"Bem-vindo, {consumidor.getNome()}!");
 
+        while (true)
+        {
+            Console.WriteLine("MENU DE CONTAS");
+            Console.WriteLine("1. Visualizar Conta de Água");
+            Console.WriteLine("2. Visualizar Conta de Luz");
+            Console.WriteLine("3. Voltar ao Menu Principal");
+            string opcao = Console.ReadLine();
+
+            switch (opcao)
+            {
+                case "1":
+                    Console.WriteLine("DIGITE O TIPO DE IMOVEL: ");
+                    string tipoImovel = Console.ReadLine();
+                    Console.WriteLine("DIGITE A LEITURA DO MÊS ANTERIOR DO HIDRÔMETRO: ");
+                    double leituraMesAnterior = double.Parse(Console.ReadLine());
+                    Console.WriteLine("DIGITE A LEITURA DO HIDRÔMETRO DESSE MÊS: ");
+                    double leituraMesAtual = double.Parse(Console.ReadLine());
+                    ContaAgua ca1 = new ContaAgua(tipoImovel, leituraMesAnterior, leituraMesAtual);
+                    double valorContaImposto = ca1.ValorTotalComImposto();
+                    VisualizarContaAgua(ca1, valorContaImposto);
+                    break;
+                case "2":
+                    Console.WriteLine("DIGITE O TIPO DE IMOVEL: ");
+                    tipoImovel = Console.ReadLine();
+                    Console.WriteLine("DIGITE A LEITURA DO MÊS ANTERIOR DO RELÓGIO: ");
+                    leituraMesAnterior = double.Parse(Console.ReadLine());
+                    Console.WriteLine("DIGITE A LEITURA DO RELÓGIO DESSE MÊS: ");
+                    leituraMesAtual = double.Parse(Console.ReadLine());
+                    ContaLuz cl1 = new ContaLuz(tipoImovel, leituraMesAnterior, leituraMesAtual);
+                    valorContaImposto = cl1.ValorTotalComImposto();
+                    VisualizarContaLuz(cl1, valorContaImposto);
+                    break;
+                case "3":
+                    return;
+                default:
+                    Console.WriteLine("Opção inválida. Tente novamente.");
+                    break;
+            }
+        }
+    }
+
+    static void VisualizarContaLuz(ContaLuz cl1, double valorContaImposto)
+    {
+        Console.WriteLine($"Tipo de Imóvel: {cl1.getTipoImovel()}");
+        Console.WriteLine($"Leitura do Mês Anterior: {cl1.getLeituraMesAnterior()}");
+        Console.WriteLine($"Leitura do Mês Atual: {cl1.getLeituraMesAtual()}");
+        Console.WriteLine($"Consumo: {cl1.getConsumo()}");
+        Console.WriteLine("VALOR TOTAL DA CONTA: "+  "R$"+ valorContaImposto);
+    }
+
+    static void VisualizarContaAgua(ContaAgua ca1,double valorContaImposto)
+    {
+        Console.WriteLine($"Tipo de Imóvel: {ca1.getTipoImovel()}");
+        Console.WriteLine($"Leitura do Mês Anterior: {ca1.getLeituraMesAnterior()}");
+        Console.WriteLine($"Leitura do Mês Atual: {ca1.getLeituraMesAtual()}");
+        Console.WriteLine($"Consumo: {ca1.getConsumo()}");
+        Console.WriteLine("VALOR TOTAL DA CONTA: "+  "R$"+ valorContaImposto);
+    }
+}
