@@ -2,15 +2,30 @@ using System;
 
 namespace TrabalhoFinalPOO.sistema{
     public abstract class Conta{
-
         protected string tipoImovel;
         protected double leituraMesAnterior = 0;
         protected double leituraMesAtual = 0;
+        protected String nomeMesAtual;
         protected double consumo;
         protected double valorSemImposto = 0;
+        protected double total = 0;
+
+        protected int idConsumidor;
+
+        public Conta(){
+            
+        }
 
         public String getTipoImovel(){
             return tipoImovel;
+        }
+
+        public String getNomeMesAtual(){
+            return nomeMesAtual;
+        }
+
+        public void setNomeMesAtual(String nomeMesAtual){
+            this.nomeMesAtual = nomeMesAtual;
         }
 
         public void setTipoImovel(string tipoImovel){
@@ -47,6 +62,10 @@ namespace TrabalhoFinalPOO.sistema{
 
         public void setValorSemImposto(double valorSemImposto){
             this.valorSemImposto = valorSemImposto;
+        }
+
+        public double getTotal(){
+            return total;
         }
 
         public virtual double ValorTotalComImposto(){

@@ -6,6 +6,7 @@ public class Program
 {
     static StreamReader sr = new StreamReader("tabelas/consumidores.txt");
     static List<Consumidor> consumidores = new List<Consumidor>();
+    static List<ContaLuz> contasDeLuz = new List<ContaLuz>();
 
     static int indexDoConsumidor;
 
@@ -14,7 +15,7 @@ public class Program
     public static void Main(String[] args)
     {
         ReceberConsumidores();
-        qntdConsumidores = consumidores.Count;
+        ReceberContasLuz();
 
         bool isRunning = true;
         while (isRunning)
@@ -48,24 +49,47 @@ public class Program
 
     static void ReceberConsumidores(){
         try{
-            String? entrada = sr.ReadLine();
-            String[] strFormatada = entrada.Split(',');
+            Consumidor consumidor;
 
-            Consumidor consumidor = new Consumidor(strFormatada[1], strFormatada[2]);
+            String[] entrada = sr.ReadToEnd().Split("\n");
 
-            consumidores.Add(consumidor);
+            qntdConsumidores = entrada.Length;
 
-            int cont = 1;
+            String[] strFormatada;
         
             try{
-                String? entrada2 = sr.ReadLine();
-                while(entrada2 != entrada && cont < qntdConsumidores){
-                    strFormatada = entrada2.Split(',');
+                for(int i = 0; i < entrada.Length; i++){
+                    strFormatada = entrada[i].Split(',');
                     consumidor = new Consumidor(strFormatada[1], strFormatada[2]);
                     consumidores.Add(consumidor);
                 }
             }catch(Exception e){
                 Console.WriteLine("Erro no metodo ReceberConsumidores. Erro: " + e.StackTrace);
+            }
+            sr.Close();
+        }catch(Exception e){
+            sr.Close();
+            return;
+        }
+    }
+
+    static void ReceberContasLuz(){
+        sr = new StreamReader("tabelas/contasDeLuz.txt");
+        try{
+            ContaLuz contaLuz;
+
+            String[] entrada = sr.ReadToEnd().Split("\n");
+
+            String[] strFormatada;
+        
+            try{
+                for(int i = 0; i < entrada.Length; i++){
+                    strFormatada = entrada[i].Split(',');
+                    contaLuz = new ContaLuz(strFormatada[2], strFormatada[1], double.Parse(strFormatada[3]), double.Parse(strFormatada[4]), int.Parse(strFormatada[8]));
+                    contasDeLuz.Add(contaLuz);
+                }
+            }catch(Exception e){
+                Console.WriteLine("Erro no metodo ReceberContasLuz. Erro: " + e.StackTrace);
             }
             sr.Close();
         }catch(Exception e){
@@ -135,7 +159,7 @@ public class Program
         int cont = 1;
         
         try{
-            while(primeiraEntrada[tipo] != entrada && cont < qntdConsumidores){
+            while(primeiraEntrada[tipo] != entrada){
                 primeiraEntrada = sr.ReadLine().Split(',');
             }
         }catch(Exception e){
@@ -186,11 +210,15 @@ public class Program
                     {
                         Console.WriteLine("DIGITE O TIPO DE IMOVEL: ");
                         string tipoImovel = Console.ReadLine();
+                        Console.WriteLine("DIGITE O NOME DO MÊS ATUAL: ");
+                        string nomeMesAtual = Console.ReadLine();
                         Console.WriteLine("DIGITE A LEITURA DO MÊS ANTERIOR DO RELÓGIO: ");
                         double leituraMesAnterior = double.Parse(Console.ReadLine());
                         Console.WriteLine("DIGITE A LEITURA DO RELÓGIO DESSE MÊS: ");
                         double leituraMesAtual = double.Parse(Console.ReadLine());
-                        ContaLuz cl1 = new ContaLuz(tipoImovel, leituraMesAnterior, leituraMesAtual);
+                        ContaLuz cl1 = new ContaLuz(tipoImovel, nomeMesAtual, leituraMesAnterior, leituraMesAtual, consumidor.getId());
+                        contasDeLuz.Add(cl1);
+                        cl1.enviarParaBanco();
                         double valorContaImposto = cl1.ValorTotalComImposto();
                         VisualizarContaLuz(cl1, valorContaImposto);
                     }
