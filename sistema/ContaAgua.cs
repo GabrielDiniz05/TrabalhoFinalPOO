@@ -23,6 +23,10 @@ namespace TrabalhoFinalPOO.sistema
             consumo = this.leituraMesAtual - this.leituraMesAnterior;
         }
 
+        public int getId(){
+            return id;
+        }
+
         public override double ValorTotalComImposto()
         {
             try

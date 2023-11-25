@@ -261,10 +261,9 @@ public class Program
         {
             Console.WriteLine("+----------------------------------+");
             Console.WriteLine("|          MENU DE CONTAS          |");
-            Console.WriteLine("|1.Gerar Conta de Água             |");
-            Console.WriteLine("|2.Gerar Conta de Luz              |");
-            Console.WriteLine("|3.Visualizar minha conta          |");
-            Console.WriteLine("|4.Voltar ao Menu Principal        |");
+            Console.WriteLine("|1.     Gerar Conta de Água        |");
+            Console.WriteLine("|2.     Gerar Conta de Luz         |");
+            Console.WriteLine("|3.     Voltar ao Menu Principal   |");
             Console.WriteLine("+----------------------------------+");
             
             Console.WriteLine("Escolha uma opção: ");
