@@ -4,10 +4,18 @@ using TrabalhoFinalPOO.sistema;
 
 public class Program
 {
+    static StreamReader sr = new StreamReader("tabelas/consumidores.txt");
     static List<Consumidor> consumidores = new List<Consumidor>();
+
+    static int indexDoConsumidor;
+
+    static int qntdConsumidores;
 
     public static void Main(String[] args)
     {
+        ReceberConsumidores();
+        qntdConsumidores = consumidores.Count;
+
         bool isRunning = true;
         while (isRunning)
         {
@@ -24,7 +32,7 @@ public class Program
                     RegistrarConsumidor();
                     break;
                 case "2":
-                    //Logar();
+                    Logar();
                     break;
                 case "3":
                     isRunning = false;
@@ -33,6 +41,34 @@ public class Program
                     Console.WriteLine("Opção inválida. Tente novamente.");
                     break;
             }
+        }        
+    }
+
+    static void ReceberConsumidores(){
+        try{
+            String entrada = sr.ReadLine();
+            String[] strFormatada = entrada.Split(',');
+
+            Consumidor consumidor = new Consumidor(strFormatada[1], strFormatada[2]);
+
+            consumidores.Add(consumidor);
+
+            int cont = 1;
+        
+            try{
+                String entrada2 = sr.ReadLine();
+                while(entrada2 != entrada && cont < qntdConsumidores){
+                    strFormatada = entrada2.Split(',');
+                    consumidor = new Consumidor(strFormatada[1], strFormatada[2]);
+                    consumidores.Add(consumidor);
+                }
+            }catch(Exception e){
+                Console.WriteLine("Erro no metodo ReceberConsumidores. Erro: " + e.StackTrace);
+            }
+            sr.Close();
+        }catch(Exception e){
+            sr.Close();
+            return;
         }
     }
 
@@ -52,27 +88,53 @@ public class Program
     }
 
 
-    /*
-    static void Logar()
-    {
+    
+    static void Logar(){
+        Consumidor consumidor;
+
+        Consumidor[] aux = new Consumidor[consumidores.Count];
+        aux = consumidores.ToArray();
+        
         Console.WriteLine("Digite seu nome: ");
         string nome = Console.ReadLine();
-        Console.WriteLine("Digite sua senha: ");
-        string senha = Console.ReadLine();
-
-        Consumidor consumidorLogado = consumidores.Find(c => c.getNome() == nome && c.getSenha() == senha);
-
-        if (consumidorLogado != null)
-        {
-            Console.WriteLine("Login bem-sucedido!");
-            MenuContas(consumidorLogado);
-        }
-        else
-        {
-            Console.WriteLine("Nome de usuário ou senha incorretos. Tente novamente.");
+        
+        if(EstaNoBanco(nome, 1)){
+            consumidor = aux[indexDoConsumidor - 1];
+            Console.WriteLine("Digite sua senha: ");
+            string senha = Console.ReadLine();
+            if(EstaNoBanco(senha, 2)){
+                MenuContas(consumidor);
+            }else{
+                Console.WriteLine("Senha inválida");
+                Logar();
+            }
+        }else{
+            Console.WriteLine("Nome inválido");
+            Logar();
         }
     }
-    */
+
+    static bool EstaNoBanco(String entrada, int tipo){
+        sr = new StreamReader("tabelas/consumidores.txt");
+        String[] primeiraEntrada = sr.ReadLine().Split(',');
+
+        int cont = 1;
+        
+        try{
+            while(primeiraEntrada[tipo] != entrada && cont < qntdConsumidores){
+                primeiraEntrada = sr.ReadLine().Split(',');
+            }
+        }catch(Exception e){
+            Console.WriteLine("Erro ao consultar no banco. Erro: " + e.StackTrace);
+            return false;
+        }
+
+        indexDoConsumidor = int.Parse(primeiraEntrada[0]);
+
+        sr.Close();
+        return true;
+    }
+    
     static void MenuContas(Consumidor consumidor)
     {
         Console.WriteLine($"Bem-vindo, {consumidor.getNome()}!");
