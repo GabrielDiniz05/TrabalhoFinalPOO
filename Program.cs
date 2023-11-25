@@ -8,6 +8,8 @@ public class Program
     static List<Consumidor> consumidores = new List<Consumidor>();
     static List<ContaLuz> contasDeLuz = new List<ContaLuz>();
 
+    static List<ContaAgua> contasDeAgua = new List<ContaAgua>();
+
     static int indexDoConsumidor;
 
     static int qntdConsumidores;
@@ -87,6 +89,34 @@ public class Program
                     strFormatada = entrada[i].Split(',');
                     contaLuz = new ContaLuz(strFormatada[2], strFormatada[1], double.Parse(strFormatada[3]), double.Parse(strFormatada[4]), int.Parse(strFormatada[8]));
                     contasDeLuz.Add(contaLuz);
+                }
+            }catch(Exception e){
+                Console.WriteLine("Erro no metodo ReceberContasLuz. Erro: " + e.StackTrace);
+            }
+            sr.Close();
+        }catch(Exception e){
+            sr.Close();
+            return;
+        }
+    }
+
+
+
+
+    static void ReceberContasAgua(){
+        sr = new StreamReader("tabelas/contasDeAgua.txt");
+        try{
+            ContaAgua contaAgua;
+
+            String[] entrada = sr.ReadToEnd().Split("\n");
+
+            String[] strFormatada;
+        
+            try{
+                for(int i = 0; i < entrada.Length; i++){
+                    strFormatada = entrada[i].Split(',');
+                    contaAgua = new ContaAgua(strFormatada[2], strFormatada[1], double.Parse(strFormatada[3]), double.Parse(strFormatada[4]), int.Parse(strFormatada[8]));
+                    contasDeAgua.Add(contaAgua);
                 }
             }catch(Exception e){
                 Console.WriteLine("Erro no metodo ReceberContasLuz. Erro: " + e.StackTrace);
@@ -180,8 +210,8 @@ public class Program
         while (true)
         {
             Console.WriteLine("MENU DE CONTAS");
-            Console.WriteLine("1. Visualizar Conta de Água");
-            Console.WriteLine("2. Visualizar Conta de Luz");
+            Console.WriteLine("1. Gerar Conta de Água");
+            Console.WriteLine("2. Gerar Conta de Luz");
             Console.WriteLine("3. Voltar ao Menu Principal");
             string? opcao = Console.ReadLine();
 
@@ -192,11 +222,15 @@ public class Program
                     {
                         Console.WriteLine("DIGITE O TIPO DE IMOVEL: ");
                         string? tipoImovel = Console.ReadLine();
+                        Console.WriteLine("DIGITE O NOME DO MÊS ATUAL: ");
+                        string nomeMesAtual = Console.ReadLine();
                         Console.WriteLine("DIGITE A LEITURA DO MÊS ANTERIOR DO HIDRÔMETRO: ");
                         double leituraMesAnterior = double.Parse(Console.ReadLine());
                         Console.WriteLine("DIGITE A LEITURA DO HIDRÔMETRO DESSE MÊS: ");
                         double leituraMesAtual = double.Parse(Console.ReadLine());
-                        ContaAgua ca1 = new ContaAgua(tipoImovel, leituraMesAnterior, leituraMesAtual);
+                        ContaAgua ca1 = new ContaAgua(tipoImovel, nomeMesAtual, leituraMesAnterior, leituraMesAtual,consumidor.getId());
+                        contasDeAgua.Add(ca1);
+                        ca1.enviarParaBanco();
                         double valorContaImposto = ca1.ValorTotalComImposto();
                         VisualizarContaAgua(ca1, valorContaImposto);
                     }
@@ -209,7 +243,7 @@ public class Program
                     try
                     {
                         Console.WriteLine("DIGITE O TIPO DE IMOVEL: ");
-                        string tipoImovel = Console.ReadLine();
+                        string? tipoImovel = Console.ReadLine();
                         Console.WriteLine("DIGITE O NOME DO MÊS ATUAL: ");
                         string nomeMesAtual = Console.ReadLine();
                         Console.WriteLine("DIGITE A LEITURA DO MÊS ANTERIOR DO RELÓGIO: ");
