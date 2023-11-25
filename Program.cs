@@ -17,20 +17,21 @@ public class Program
             Console.WriteLine("LOGAR: 2");
             Console.WriteLine("SAIR DO SISTEMA: 3");
             string opcao = Console.ReadLine();
-
+            
             switch (opcao)
             {
                 case "1":
                     RegistrarConsumidor();
                     break;
                 case "2":
-                    //Logar();
+                    // Logar();
                     break;
                 case "3":
+                    Console.WriteLine("ESPERO QUE TENHAMOS AJUDADO, ATÉ A PROXIMA!");
                     isRunning = false;
                     break;
                 default:
-                    Console.WriteLine("Opção inválida. Tente novamente.");
+                    Console.WriteLine("OPÇÃO");
                     break;
             }
         }
@@ -38,19 +39,30 @@ public class Program
 
     static void RegistrarConsumidor()
     {
-        Console.WriteLine("Digite seu nome: ");
-        string nome = Console.ReadLine();
-        Console.WriteLine("Digite sua senha: ");
-        string senha = Console.ReadLine();
+        try
+        {
+            Console.WriteLine("Digite seu nome: ");
+            string nome = Console.ReadLine();
+            Console.WriteLine("Digite sua senha: ");
+            string senha = Console.ReadLine();
 
-        Consumidor novoConsumidor = new Consumidor(nome, senha);
-        consumidores.Add(novoConsumidor);
-        novoConsumidor.enviarParaBanco();
+            if (string.IsNullOrWhiteSpace(nome) || string.IsNullOrWhiteSpace(senha))
+            {
+                throw new Exception("Nome e senha não podem ser vazios.");
+            }
 
-        Console.WriteLine("Cadastro realizado com sucesso!");
-        MenuContas(novoConsumidor);
+            Consumidor novoConsumidor = new Consumidor(nome, senha);
+            consumidores.Add(novoConsumidor);
+            novoConsumidor.enviarParaBanco();
+
+            Console.WriteLine("Cadastro realizado com sucesso!");
+            MenuContas(novoConsumidor);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erro no cadastro: {ex.Message}");
+        }
     }
-
 
     /*
     static void Logar()
@@ -73,6 +85,7 @@ public class Program
         }
     }
     */
+
     static void MenuContas(Consumidor consumidor)
     {
         Console.WriteLine($"Bem-vindo, {consumidor.getNome()}!");
@@ -88,26 +101,40 @@ public class Program
             switch (opcao)
             {
                 case "1":
-                    Console.WriteLine("DIGITE O TIPO DE IMOVEL: ");
-                    string tipoImovel = Console.ReadLine();
-                    Console.WriteLine("DIGITE A LEITURA DO MÊS ANTERIOR DO HIDRÔMETRO: ");
-                    double leituraMesAnterior = double.Parse(Console.ReadLine());
-                    Console.WriteLine("DIGITE A LEITURA DO HIDRÔMETRO DESSE MÊS: ");
-                    double leituraMesAtual = double.Parse(Console.ReadLine());
-                    ContaAgua ca1 = new ContaAgua(tipoImovel, leituraMesAnterior, leituraMesAtual);
-                    double valorContaImposto = ca1.ValorTotalComImposto();
-                    VisualizarContaAgua(ca1, valorContaImposto);
+                    try
+                    {
+                        Console.WriteLine("DIGITE O TIPO DE IMOVEL: ");
+                        string tipoImovel = Console.ReadLine();
+                        Console.WriteLine("DIGITE A LEITURA DO MÊS ANTERIOR DO HIDRÔMETRO: ");
+                        double leituraMesAnterior = double.Parse(Console.ReadLine());
+                        Console.WriteLine("DIGITE A LEITURA DO HIDRÔMETRO DESSE MÊS: ");
+                        double leituraMesAtual = double.Parse(Console.ReadLine());
+                        ContaAgua ca1 = new ContaAgua(tipoImovel, leituraMesAnterior, leituraMesAtual);
+                        double valorContaImposto = ca1.ValorTotalComImposto();
+                        VisualizarContaAgua(ca1, valorContaImposto);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Erro ao visualizar conta de água: {ex.Message}");
+                    }
                     break;
                 case "2":
-                    Console.WriteLine("DIGITE O TIPO DE IMOVEL: ");
-                    tipoImovel = Console.ReadLine();
-                    Console.WriteLine("DIGITE A LEITURA DO MÊS ANTERIOR DO RELÓGIO: ");
-                    leituraMesAnterior = double.Parse(Console.ReadLine());
-                    Console.WriteLine("DIGITE A LEITURA DO RELÓGIO DESSE MÊS: ");
-                    leituraMesAtual = double.Parse(Console.ReadLine());
-                    ContaLuz cl1 = new ContaLuz(tipoImovel, leituraMesAnterior, leituraMesAtual);
-                    valorContaImposto = cl1.ValorTotalComImposto();
-                    VisualizarContaLuz(cl1, valorContaImposto);
+                    try
+                    {
+                        Console.WriteLine("DIGITE O TIPO DE IMOVEL: ");
+                        string tipoImovel = Console.ReadLine();
+                        Console.WriteLine("DIGITE A LEITURA DO MÊS ANTERIOR DO RELÓGIO: ");
+                        double leituraMesAnterior = double.Parse(Console.ReadLine());
+                        Console.WriteLine("DIGITE A LEITURA DO RELÓGIO DESSE MÊS: ");
+                        double leituraMesAtual = double.Parse(Console.ReadLine());
+                        ContaLuz cl1 = new ContaLuz(tipoImovel, leituraMesAnterior, leituraMesAtual);
+                        double valorContaImposto = cl1.ValorTotalComImposto();
+                        VisualizarContaLuz(cl1, valorContaImposto);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Erro ao visualizar conta de luz: {ex.Message}");
+                    }
                     break;
                 case "3":
                     return;
@@ -124,15 +151,15 @@ public class Program
         Console.WriteLine($"Leitura do Mês Anterior: {cl1.getLeituraMesAnterior()}");
         Console.WriteLine($"Leitura do Mês Atual: {cl1.getLeituraMesAtual()}");
         Console.WriteLine($"Consumo: {cl1.getConsumo()}");
-        Console.WriteLine("VALOR TOTAL DA CONTA: "+  "R$"+ valorContaImposto);
+        Console.WriteLine("VALOR TOTAL DA CONTA: " + "R$" + valorContaImposto);
     }
 
-    static void VisualizarContaAgua(ContaAgua ca1,double valorContaImposto)
+    static void VisualizarContaAgua(ContaAgua ca1, double valorContaImposto)
     {
         Console.WriteLine($"Tipo de Imóvel: {ca1.getTipoImovel()}");
         Console.WriteLine($"Leitura do Mês Anterior: {ca1.getLeituraMesAnterior()}");
         Console.WriteLine($"Leitura do Mês Atual: {ca1.getLeituraMesAtual()}");
         Console.WriteLine($"Consumo: {ca1.getConsumo()}");
-        Console.WriteLine("VALOR TOTAL DA CONTA: "+  "R$"+ valorContaImposto);
+        Console.WriteLine("VALOR TOTAL DA CONTA: " + "R$" + valorContaImposto);
     }
 }
