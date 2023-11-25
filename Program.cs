@@ -24,7 +24,8 @@ public class Program
             Console.WriteLine("CADASTRAR-SE: 1");
             Console.WriteLine("LOGAR: 2");
             Console.WriteLine("SAIR DO SISTEMA: 3");
-            string opcao = Console.ReadLine();
+            
+            string? opcao = Console.ReadLine();
             
             switch (opcao)
             {
@@ -47,7 +48,7 @@ public class Program
 
     static void ReceberConsumidores(){
         try{
-            String entrada = sr.ReadLine();
+            String? entrada = sr.ReadLine();
             String[] strFormatada = entrada.Split(',');
 
             Consumidor consumidor = new Consumidor(strFormatada[1], strFormatada[2]);
@@ -57,7 +58,7 @@ public class Program
             int cont = 1;
         
             try{
-                String entrada2 = sr.ReadLine();
+                String? entrada2 = sr.ReadLine();
                 while(entrada2 != entrada && cont < qntdConsumidores){
                     strFormatada = entrada2.Split(',');
                     consumidor = new Consumidor(strFormatada[1], strFormatada[2]);
@@ -78,9 +79,9 @@ public class Program
         try
         {
             Console.WriteLine("Digite seu nome: ");
-            string nome = Console.ReadLine();
+            string? nome = Console.ReadLine();
             Console.WriteLine("Digite sua senha: ");
-            string senha = Console.ReadLine();
+            string? senha = Console.ReadLine();
 
             if (string.IsNullOrWhiteSpace(nome) || string.IsNullOrWhiteSpace(senha))
             {
@@ -109,12 +110,12 @@ public class Program
         aux = consumidores.ToArray();
         
         Console.WriteLine("Digite seu nome: ");
-        string nome = Console.ReadLine();
+        string? nome = Console.ReadLine();
         
         if(EstaNoBanco(nome, 1)){
             consumidor = aux[indexDoConsumidor - 1];
             Console.WriteLine("Digite sua senha: ");
-            string senha = Console.ReadLine();
+            string? senha = Console.ReadLine();
             if(EstaNoBanco(senha, 2)){
                 MenuContas(consumidor);
             }else{
@@ -158,7 +159,7 @@ public class Program
             Console.WriteLine("1. Visualizar Conta de Água");
             Console.WriteLine("2. Visualizar Conta de Luz");
             Console.WriteLine("3. Voltar ao Menu Principal");
-            string opcao = Console.ReadLine();
+            string? opcao = Console.ReadLine();
 
             switch (opcao)
             {
@@ -166,7 +167,7 @@ public class Program
                     try
                     {
                         Console.WriteLine("DIGITE O TIPO DE IMOVEL: ");
-                        string tipoImovel = Console.ReadLine();
+                        string? tipoImovel = Console.ReadLine();
                         Console.WriteLine("DIGITE A LEITURA DO MÊS ANTERIOR DO HIDRÔMETRO: ");
                         double leituraMesAnterior = double.Parse(Console.ReadLine());
                         Console.WriteLine("DIGITE A LEITURA DO HIDRÔMETRO DESSE MÊS: ");

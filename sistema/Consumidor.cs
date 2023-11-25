@@ -35,8 +35,9 @@ public class Consumidor : GerenciadorDados{
     }
 
     public void enviarParaBanco(){
-        StreamWriter sw = new StreamWriter("tabelas/consumidores.txt");
+        StreamWriter sw = new StreamWriter("tabelas/consumidores.txt", true);
         sw.WriteLine(this.ToString());
+        
         sw.Close();
     }
 
