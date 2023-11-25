@@ -22,14 +22,20 @@ public class Program
         bool isRunning = true;
         while (isRunning)
         {
-            Console.WriteLine("SEJA BEM VINDO AO NOSSO SISTEMA!");
-            Console.WriteLine("PARA OS SEGUINTES PROCESSOS, DIGITE UM NUMERO PARA REALIZA-LO.");
-            Console.WriteLine("CADASTRAR-SE: 1");
-            Console.WriteLine("LOGAR: 2");
-            Console.WriteLine("SAIR DO SISTEMA: 3");
-            
+            Console.Clear();           
+            Console.WriteLine("+----------------------------------+");
+            Console.WriteLine("|          MENU PRINCIPAL          |");
+            Console.WriteLine("| SEJA BEM VINDO AO NOSSO SISTEMA! |");
+            Console.WriteLine("| 1. CADASTRAR-SE                  |");
+            Console.WriteLine("| 2. LOGAR                         |");
+            Console.WriteLine("| 3. SAIR DO SISTEMA               |");
+            Console.WriteLine("+----------------------------------+");
+
+            Console.Write("Escolha uma opção: ");
             string? opcao = Console.ReadLine();
-            
+
+            Console.Clear(); // Limpa a tela para melhorar a apresentação.
+
             switch (opcao)
             {
                 case "1":
@@ -39,18 +45,28 @@ public class Program
                     Logar();
                     break;
                 case "3":
-                    Console.WriteLine("ESPERO QUE TENHAMOS AJUDADO, ATÉ A PROXIMA!");
+                    Console.WriteLine("=== OBRIGADO E ATÉ LOGO! ===");
                     isRunning = false;
                     break;
                 default:
-                    Console.WriteLine("OPÇÃO");
+                    Console.WriteLine("=== OPÇÃO INVÁLIDA. TENTE NOVAMENTE. ===");
                     break;
             }
-        }        
+
+            if (isRunning)
+            {
+                Console.WriteLine("Pressione qualquer tecla para continuar...");
+                Console.ReadKey();
+            }
+        }
     }
 
-    static void ReceberConsumidores(){
-        try{
+
+
+    static void ReceberConsumidores()
+    {
+        try
+        {
             Consumidor consumidor;
 
             String[] entrada = sr.ReadToEnd().Split("\n");
@@ -58,43 +74,57 @@ public class Program
             qntdConsumidores = entrada.Length;
 
             String[] strFormatada;
-        
-            try{
-                for(int i = 0; i < entrada.Length; i++){
+
+            try
+            {
+                for (int i = 0; i < entrada.Length; i++)
+                {
                     strFormatada = entrada[i].Split(',');
                     consumidor = new Consumidor(strFormatada[1], strFormatada[2]);
                     consumidores.Add(consumidor);
                 }
-            }catch(Exception e){
+            }
+            catch (Exception e)
+            {
                 Console.WriteLine("Erro no metodo ReceberConsumidores. Erro: " + e.StackTrace);
             }
             sr.Close();
-        }catch(Exception e){
+        }
+        catch (Exception e)
+        {
             sr.Close();
             return;
         }
     }
 
-    static void ReceberContasLuz(){
+    static void ReceberContasLuz()
+    {
         sr = new StreamReader("tabelas/contasDeLuz.txt");
-        try{
+        try
+        {
             ContaLuz contaLuz;
 
             String[] entrada = sr.ReadToEnd().Split("\n");
 
             String[] strFormatada;
-        
-            try{
-                for(int i = 0; i < entrada.Length; i++){
+
+            try
+            {
+                for (int i = 0; i < entrada.Length; i++)
+                {
                     strFormatada = entrada[i].Split(',');
                     contaLuz = new ContaLuz(strFormatada[2], strFormatada[1], double.Parse(strFormatada[3]), double.Parse(strFormatada[4]), int.Parse(strFormatada[8]));
                     contasDeLuz.Add(contaLuz);
                 }
-            }catch(Exception e){
+            }
+            catch (Exception e)
+            {
                 Console.WriteLine("Erro no metodo ReceberContasLuz. Erro: " + e.StackTrace);
             }
             sr.Close();
-        }catch(Exception e){
+        }
+        catch (Exception e)
+        {
             sr.Close();
             return;
         }
@@ -103,26 +133,34 @@ public class Program
 
 
 
-    static void ReceberContasAgua(){
+    static void ReceberContasAgua()
+    {
         sr = new StreamReader("tabelas/contasDeAgua.txt");
-        try{
+        try
+        {
             ContaAgua contaAgua;
 
             String[] entrada = sr.ReadToEnd().Split("\n");
 
             String[] strFormatada;
-        
-            try{
-                for(int i = 0; i < entrada.Length; i++){
+
+            try
+            {
+                for (int i = 0; i < entrada.Length; i++)
+                {
                     strFormatada = entrada[i].Split(',');
                     contaAgua = new ContaAgua(strFormatada[2], strFormatada[1], double.Parse(strFormatada[3]), double.Parse(strFormatada[4]), int.Parse(strFormatada[8]));
                     contasDeAgua.Add(contaAgua);
                 }
-            }catch(Exception e){
+            }
+            catch (Exception e)
+            {
                 Console.WriteLine("Erro no metodo ReceberContasLuz. Erro: " + e.StackTrace);
             }
             sr.Close();
-        }catch(Exception e){
+        }
+        catch (Exception e)
+        {
             sr.Close();
             return;
         }
@@ -156,43 +194,55 @@ public class Program
     }
 
 
-    
-    static void Logar(){
+
+    static void Logar()
+    {
         Consumidor consumidor;
 
         Consumidor[] aux = new Consumidor[consumidores.Count];
         aux = consumidores.ToArray();
-        
+
         Console.WriteLine("Digite seu nome: ");
         string? nome = Console.ReadLine();
-        
-        if(EstaNoBanco(nome, 1)){
+
+        if (EstaNoBanco(nome, 1))
+        {
             consumidor = aux[indexDoConsumidor - 1];
             Console.WriteLine("Digite sua senha: ");
             string? senha = Console.ReadLine();
-            if(EstaNoBanco(senha, 2)){
+            if (EstaNoBanco(senha, 2))
+            {
                 MenuContas(consumidor);
-            }else{
+            }
+            else
+            {
                 Console.WriteLine("Senha inválida");
                 Logar();
             }
-        }else{
+        }
+        else
+        {
             Console.WriteLine("Nome inválido");
             Logar();
         }
     }
 
-    static bool EstaNoBanco(String entrada, int tipo){
+    static bool EstaNoBanco(String entrada, int tipo)
+    {
         sr = new StreamReader("tabelas/consumidores.txt");
         String[] primeiraEntrada = sr.ReadLine().Split(',');
 
         int cont = 1;
-        
-        try{
-            while(primeiraEntrada[tipo] != entrada){
+
+        try
+        {
+            while (primeiraEntrada[tipo] != entrada)
+            {
                 primeiraEntrada = sr.ReadLine().Split(',');
             }
-        }catch(Exception e){
+        }
+        catch (Exception e)
+        {
             Console.WriteLine("Erro ao consultar no banco. Erro: " + e.StackTrace);
             return false;
         }
@@ -202,17 +252,22 @@ public class Program
         sr.Close();
         return true;
     }
-    
+
     static void MenuContas(Consumidor consumidor)
     {
         Console.WriteLine($"Bem-vindo, {consumidor.getNome()}!");
 
         while (true)
         {
-            Console.WriteLine("MENU DE CONTAS");
-            Console.WriteLine("1. Gerar Conta de Água");
-            Console.WriteLine("2. Gerar Conta de Luz");
-            Console.WriteLine("3. Voltar ao Menu Principal");
+            Console.WriteLine("+----------------------------------+");
+            Console.WriteLine("|          MENU DE CONTAS          |");
+            Console.WriteLine("|1.Gerar Conta de Água             |");
+            Console.WriteLine("|2.Gerar Conta de Luz              |");
+            Console.WriteLine("|3.Visualizar minha conta          |");
+            Console.WriteLine("|4.Voltar ao Menu Principal        |");
+            Console.WriteLine("+----------------------------------+");
+            
+            Console.WriteLine("Escolha uma opção: ");
             string? opcao = Console.ReadLine();
 
             switch (opcao)
@@ -228,7 +283,7 @@ public class Program
                         double leituraMesAnterior = double.Parse(Console.ReadLine());
                         Console.WriteLine("DIGITE A LEITURA DO HIDRÔMETRO DESSE MÊS: ");
                         double leituraMesAtual = double.Parse(Console.ReadLine());
-                        ContaAgua ca1 = new ContaAgua(tipoImovel, nomeMesAtual, leituraMesAnterior, leituraMesAtual,consumidor.getId());
+                        ContaAgua ca1 = new ContaAgua(tipoImovel, nomeMesAtual, leituraMesAnterior, leituraMesAtual, consumidor.getId());
                         contasDeAgua.Add(ca1);
                         ca1.enviarParaBanco();
                         double valorContaImposto = ca1.ValorTotalComImposto();
