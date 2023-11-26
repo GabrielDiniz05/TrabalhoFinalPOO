@@ -34,8 +34,6 @@ public class Program
             Console.Write("Escolha uma opção: ");
             string? opcao = Console.ReadLine();
 
-            Console.Clear(); // Limpa a tela para melhorar a apresentação.
-
             switch (opcao)
             {
                 case "1":
@@ -270,7 +268,8 @@ public class Program
             Console.WriteLine("|          MENU DE CONTAS          |");
             Console.WriteLine("|1.     Gerar Conta de Água        |");
             Console.WriteLine("|2.     Gerar Conta de Luz         |");
-            Console.WriteLine("|3.     Voltar ao Menu Principal   |");
+            Console.WriteLine("|3.     Gerar relatorio das contas |");
+            Console.WriteLine("|4.     Voltar ao Menu Principal   |");
             Console.WriteLine("+----------------------------------+");
 
             Console.WriteLine("Escolha uma opção: ");
@@ -293,7 +292,6 @@ public class Program
                         contasDeAgua.Add(ca1);
                         ca1.enviarParaBanco();
                         double valorContaImposto = ca1.ValorTotalComImposto();
-                        VisualizarContaAgua(ca1, valorContaImposto);
                     }
                     catch (Exception ex)
                     {
@@ -315,7 +313,7 @@ public class Program
                         contasDeLuz.Add(cl1);
                         cl1.enviarParaBanco();
                         double valorContaImposto = cl1.ValorTotalComImposto();
-                        VisualizarContaLuz(cl1, valorContaImposto);
+
                     }
                     catch (Exception ex)
                     {
@@ -323,12 +321,39 @@ public class Program
                     }
                     break;
                 case "3":
+                    VisualizarRelatorio();
                     return;
                 default:
                     Console.WriteLine("Opção inválida. Tente novamente.");
                     break;
             }
         }
+    }
+
+
+    static void VisualizarRelatorio()
+    {
+        Console.Clear();
+        Console.WriteLine("+-----------------------------+");
+        Console.WriteLine("|     RELATÓRIO DE CONTAS     |");
+        Console.WriteLine("+-----------------------------+");
+
+        foreach (var contaLuz in contasDeLuz)
+        {
+            double valorContaImposto = contaLuz.ValorTotalComImposto();
+            VisualizarContaLuz(contaLuz, valorContaImposto);
+            Console.WriteLine("+-----------------------------+");
+        }
+
+        foreach (var contaAgua in contasDeAgua)
+        {
+            double valorContaImposto = contaAgua.ValorTotalComImposto();
+            VisualizarContaAgua(contaAgua, valorContaImposto);
+            Console.WriteLine("+-----------------------------+");
+        }
+
+        Console.WriteLine("Pressione qualquer tecla para voltar ao menu principal...");
+        Console.ReadKey();
     }
 
     static void VisualizarContaLuz(ContaLuz cl1, double valorContaImposto)
