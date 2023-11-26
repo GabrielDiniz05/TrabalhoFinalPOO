@@ -6,8 +6,9 @@ public class Consumidor : GerenciadorDados{
     int id;
     string nome;
     string senha;
-    List<ContaLuz> ContasDeLuz;
-    List<ContaAgua> ContasDeAgua;
+    public List<ContaLuz> ContasDeLuz;
+    public List<ContaAgua> ContasDeAgua;
+
 
     public Consumidor(string nome, string senha){
         id = cont;
@@ -42,6 +43,28 @@ public class Consumidor : GerenciadorDados{
     }
 
     public override string ToString(){
-        return id + "," + nome + "," + senha;
+        ContaLuz[] contaLuzs = ContasDeLuz.ToArray();
+        ContaAgua[] contaAguas = ContasDeAgua.ToArray();
+
+        String p1 = id + "," + nome + "," + senha;
+
+        String p2 = "";
+        if(contaLuzs.Length > 0){
+            p2 = ",";
+            for(int i = 0; i < contaLuzs.Length-1; i++){
+                p2 += contaLuzs[i] + "-";
+            }
+            p2 += contaLuzs[contaLuzs.Length-1] + ",";
+        }
+        String p3 = ""; 
+        if(contaAguas.Length > 0){
+       
+            for(int i = 0; i < contaAguas.Length-1; i++){
+                p3 += contaAguas[i] + "-";
+            }
+            p3 += contaAguas[contaAguas.Length-1];
+        }
+        
+        return p1 + p2 + p3;
     }
 }

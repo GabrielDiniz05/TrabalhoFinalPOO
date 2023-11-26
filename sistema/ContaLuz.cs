@@ -66,7 +66,6 @@ namespace TrabalhoFinalPOO.sistema{
             "," + leituraMesAnterior +
             "," + leituraMesAtual + 
             "," + consumo +
-            "," + valorFixoSerPago +
             "," + valorSemImposto +
             "," + idConsumidor;
         }
