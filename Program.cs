@@ -22,7 +22,7 @@ public class Program
         bool isRunning = true;
         while (isRunning)
         {
-            Console.Clear();           
+            Console.Clear();
             Console.WriteLine("+----------------------------------+");
             Console.WriteLine("|          MENU PRINCIPAL          |");
             Console.WriteLine("| SEJA BEM VINDO AO NOSSO SISTEMA! |");
@@ -59,6 +59,7 @@ public class Program
                 Console.ReadKey();
             }
         }
+        GerarRelatorio();
     }
 
 
@@ -130,6 +131,12 @@ public class Program
         }
     }
 
+    public static void GerarRelatorio()
+    {
+        Relatorio relatorio = new Relatorio(contasDeLuz, contasDeAgua);
+        string nomeArquivo = "tabelas/Relatorio.txt";
+        relatorio.EscreverContasNoArquivo(nomeArquivo);
+    }
 
 
 
@@ -265,7 +272,7 @@ public class Program
             Console.WriteLine("|2.     Gerar Conta de Luz         |");
             Console.WriteLine("|3.     Voltar ao Menu Principal   |");
             Console.WriteLine("+----------------------------------+");
-            
+
             Console.WriteLine("Escolha uma opção: ");
             string? opcao = Console.ReadLine();
 
