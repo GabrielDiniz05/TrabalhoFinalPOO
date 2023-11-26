@@ -24,13 +24,13 @@ namespace TrabalhoFinalPOO.sistema
                 {
                     sw.WriteLine("=== RELATÓRIO DE CONTAS ===");
 
-                    sw.WriteLine("\n--- CONTAS DE LUZ ---");
+                    sw.WriteLine("--- CONTAS DE LUZ ---");
                     foreach (ContaLuz contaLuz in contasDeLuz)
                     {
                         sw.WriteLine(contaLuz.ToString());
                     }
 
-                    sw.WriteLine("\n--- CONTAS DE ÁGUA ---");
+                    sw.WriteLine("--- CONTAS DE ÁGUA ---");
                     foreach (ContaAgua contaAgua in contasDeAgua)
                     {
                         sw.WriteLine(contaAgua.ToString());

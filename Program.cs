@@ -18,7 +18,7 @@ public class Program
     {
         ReceberConsumidores();
         ReceberContasLuz();
-
+        GerarRelatorio();
         bool isRunning = true;
         while (isRunning)
         {
@@ -57,7 +57,6 @@ public class Program
                 Console.ReadKey();
             }
         }
-        GerarRelatorio();
     }
 
 
@@ -292,6 +291,7 @@ public class Program
                         contasDeAgua.Add(ca1);
                         ca1.enviarParaBanco();
                         double valorContaImposto = ca1.ValorTotalComImposto();
+                        
                     }
                     catch (Exception ex)
                     {
@@ -338,13 +338,14 @@ public class Program
         Console.WriteLine("|     RELATÓRIO DE CONTAS     |");
         Console.WriteLine("+-----------------------------+");
 
+        Console.WriteLine("--- CONTAS DE LUZ ---");
         foreach (var contaLuz in contasDeLuz)
         {
             double valorContaImposto = contaLuz.ValorTotalComImposto();
             VisualizarContaLuz(contaLuz, valorContaImposto);
             Console.WriteLine("+-----------------------------+");
         }
-
+        Console.WriteLine("--- CONTAS DE ÁGUA ---");
         foreach (var contaAgua in contasDeAgua)
         {
             double valorContaImposto = contaAgua.ValorTotalComImposto();
