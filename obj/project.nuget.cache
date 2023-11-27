@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "m49F/cF6BMEf+HNoIX1Ez38wJtTG0Trh6FO2PzRBLsEdBcmTa9a4hD9VCiqpbRLyySQvqi8ly2UJ1YQaFKbOLA==",
+  "dgSpecHash": "1dbhI3pXvTXQHl68j8jcwHL5gN/SHExuYx5UA/EJnHXqejccXrtLc1DcK6gochgFNLXz8hOHYY6v3JLLJ6Xpsw==",
   "success": true,
   "projectFilePath": "C:\\Users\\gle11\\Desktop\\Trabalho POO\\TrabalhoFinalPOO\\TrabalhoFinalPOO.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\gle11\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.14\\microsoft.netcore.app.ref.7.0.14.nupkg.sha512",
+    "C:\\Users\\gle11\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.14\\microsoft.windowsdesktop.app.ref.7.0.14.nupkg.sha512",
+    "C:\\Users\\gle11\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.14\\microsoft.aspnetcore.app.ref.7.0.14.nupkg.sha512",
+    "C:\\Users\\gle11\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.14\\microsoft.netcore.app.host.win-x64.7.0.14.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -3,11 +3,11 @@ C:\Users\gle11\Desktop\Trabalho POO\TrabalhoFinalPOO\bin\Debug\net7.0\TrabalhoFi
 C:\Users\gle11\Desktop\Trabalho POO\TrabalhoFinalPOO\bin\Debug\net7.0\TrabalhoFinalPOO.runtimeconfig.json
 C:\Users\gle11\Desktop\Trabalho POO\TrabalhoFinalPOO\bin\Debug\net7.0\TrabalhoFinalPOO.dll
 C:\Users\gle11\Desktop\Trabalho POO\TrabalhoFinalPOO\bin\Debug\net7.0\TrabalhoFinalPOO.pdb
-C:\Users\gle11\Desktop\Trabalho POO\TrabalhoFinalPOO\obj\Debug\net7.0\TrabalhoFinalPOO.csproj.AssemblyReference.cache
 C:\Users\gle11\Desktop\Trabalho POO\TrabalhoFinalPOO\obj\Debug\net7.0\TrabalhoFinalPOO.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\gle11\Desktop\Trabalho POO\TrabalhoFinalPOO\obj\Debug\net7.0\TrabalhoFinalPOO.AssemblyInfoInputs.cache
 C:\Users\gle11\Desktop\Trabalho POO\TrabalhoFinalPOO\obj\Debug\net7.0\TrabalhoFinalPOO.AssemblyInfo.cs
 C:\Users\gle11\Desktop\Trabalho POO\TrabalhoFinalPOO\obj\Debug\net7.0\TrabalhoFinalPOO.csproj.CoreCompileInputs.cache
+C:\Users\gle11\Desktop\Trabalho POO\TrabalhoFinalPOO\obj\Debug\net7.0\TrabalhoFinalPOO.sourcelink.json
 C:\Users\gle11\Desktop\Trabalho POO\TrabalhoFinalPOO\obj\Debug\net7.0\TrabalhoFinalPOO.dll
 C:\Users\gle11\Desktop\Trabalho POO\TrabalhoFinalPOO\obj\Debug\net7.0\refint\TrabalhoFinalPOO.dll
 C:\Users\gle11\Desktop\Trabalho POO\TrabalhoFinalPOO\obj\Debug\net7.0\TrabalhoFinalPOO.pdb
